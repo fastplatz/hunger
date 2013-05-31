@@ -9,6 +9,7 @@ using DataAccessLayer.Db;
 
 namespace hunger.Controllers
 {
+    [Authorize]
     public class FoodController : Controller
     {
         private foodDbContext db = new foodDbContext();

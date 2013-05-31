@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using DataAccessLayer.Db;
+using WebMatrix.WebData;
 
 namespace hunger
 {
@@ -19,7 +20,7 @@ namespace hunger
         protected void Application_Start()
         {
             //Database.SetInitializer<foodDbContext>(new foodInitializer());
-            //InitializeDatabaseConnection();
+            InitializeDatabaseConnection();
             AreaRegistration.RegisterAllAreas();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
@@ -29,9 +30,9 @@ namespace hunger
             AuthConfig.RegisterAuth();
         }
 
-        //public static void InitializeDatabaseConnection()
-        //{
-        //    WebSecurity.InitializeDatabaseConnection("foodDbContext", "UserProfile", "UserId", "UserName", autoCreateTables: true);
-        //}
+        public static void InitializeDatabaseConnection()
+        {
+            WebSecurity.InitializeDatabaseConnection("foodDbContext", "UserProfile", "UserId", "UserName", autoCreateTables: true);
+        }
     }
 }
