@@ -9,10 +9,24 @@ namespace hunger.Controllers
     [Authorize]
     public class HomeController : Controller
     {
+        public class GMap
+        {
+            public object[] Locations { get; set; }
+            public string Description { get; set; }
+        }
+
+        [HttpGet]
         public ActionResult Map()
         {
             ViewBag.Message = "TODO: put the google map with pins here.";
 
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Map(GMap gmap)
+        {
+            Session["MapData"] = gmap;
             return View();
         }
 

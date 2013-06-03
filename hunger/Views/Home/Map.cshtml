@@ -1,5 +1,39 @@
 ﻿@{
-    ViewBag.Title = "Map";
+    ViewBag.Title = "Hunger Map";
 }
+@section MapStyles {
+    html { height: 100% } 
+    body { height: 100%; margin: 0px; padding: 0px } 
+    #map_canvas { height: 30em } 
+}
+@section MapScripts {
+    <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false">
+    </script>
+    <script>
+        var allMarks = [];
+        var map;
+        function initialize() {
+            var mapOptions = {
+                zoom: 8,
+                center: new google.maps.LatLng(35.5919, -82.5502),
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+        }
 
-<h2>Map</h2>
+        google.maps.event.addDomListener(window, 'load', initialize);
+        google.maps.event.addListener(map, "dblclick", function (e) {
+            if (e.latLng) {
+                var marker = new google.maps.Marker({
+                    position: e.latLng,
+                    map: map
+                });
+                allMarks.push(e.latLng);
+            }
+        });
+
+	</script>
+}
+<h2>My Map</h2>
+<div id="map_canvas"></div>
